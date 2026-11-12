@@ -1,6 +1,9 @@
 import { Clock, Instagram, MapPin, MessageCircle, Navigation } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site-data";
 
+const GOOGLE_MAPS_EMBED_URL =
+  "https://www.google.com/maps?q=R.+Jo%C3%A3o+Gualberto+da+Silva,+35+-+Centro,+Lages+-+SC,+88501-005&output=embed";
+
 export function LocationSection() {
   return (
     <section
@@ -20,27 +23,39 @@ export function LocationSection() {
         </div>
 
         <div className="reveal-section grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Address & Route Card */}
+          {/* Address, Embedded Map & Route Card */}
           <div className="lg:col-span-7 rounded-2xl border border-[#B8925A]/28 bg-[#FAF6F0]/92 backdrop-blur-sm p-6 sm:p-8 lg:p-10 flex flex-col justify-between shadow-[0_16px_40px_-24px_rgba(28,25,23,0.18)]">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs tracking-[0.16em] uppercase text-[#9C7844] font-semibold mb-4">
+              <div className="inline-flex items-center gap-2 text-xs tracking-[0.16em] uppercase text-[#9C7844] font-semibold mb-3">
                 <MapPin className="w-4 h-4 shrink-0" />
                 <span>Endereço Completo</span>
               </div>
 
-              <h3 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] text-balance mb-3">
+              <h3 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] text-balance mb-2">
                 {SITE_CONFIG.address.street}
               </h3>
-              <p className="text-sm sm:text-base text-[#5E554D] mb-2">
+              <p className="text-sm sm:text-base text-[#5E554D] mb-1.5">
                 {SITE_CONFIG.address.neighborhood}, {SITE_CONFIG.address.city} -{" "}
                 {SITE_CONFIG.address.state}, CEP {SITE_CONFIG.address.postalCode}
               </p>
-              <p className="text-xs text-[#6B635B] tabular-nums mb-8">
+              <p className="text-xs text-[#6B635B] tabular-nums mb-5">
                 Plus Code: {SITE_CONFIG.address.plusCode}
               </p>
+
+              {/* Embedded Google Map */}
+              <div className="relative w-full h-52 sm:h-60 rounded-xl overflow-hidden border border-[#B8925A]/25 bg-[#E8DDD0] mb-6">
+                <iframe
+                  title="Mapa de localização da clínica Dra. Gislaine Zanelato em Lages - SC"
+                  src={GOOGLE_MAPS_EMBED_URL}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full border-0"
+                  allowFullScreen
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-6 border-t border-[#B8925A]/20">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-5 border-t border-[#B8925A]/20">
               <a
                 href={SITE_CONFIG.address.mapsUrl}
                 target="_blank"

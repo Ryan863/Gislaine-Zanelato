@@ -14,11 +14,11 @@ export function AuthoritySection() {
           <div className="reveal-section lg:col-span-5 flex flex-col gap-5">
             <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-[#B8925A]/30 shadow-[0_20px_50px_-24px_rgba(28,25,23,0.3)]">
               <Image
-                src="/hero-desktop.webp"
-                alt="Sala de atendimento da Dra. Gislaine Zanelato no Centro de Lages"
+                src="/authority-clinic.jpg"
+                alt="Mesa de atendimento editorial em travertino e ampolas de alta pureza na clínica da Dra. Gislaine Zanelato"
                 fill
                 sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-cover object-right"
+                className="object-cover object-center"
               />
               <div
                 aria-hidden="true"
