@@ -7,9 +7,9 @@ import { useGSAP } from "@gsap/react";
 import { FilmGrainOverlay } from "@/components/FilmGrainOverlay";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
+import { ImperiumLiftSection } from "@/components/ImperiumLiftSection";
 import { SpecialtiesSection } from "@/components/SpecialtiesSection";
-import { MethodSection } from "@/components/MethodSection";
-import { MelasmaSection } from "@/components/MelasmaSection";
+import { AuthoritySection } from "@/components/AuthoritySection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FaqSection } from "@/components/FaqSection";
 import { LocationSection } from "@/components/LocationSection";
@@ -26,7 +26,6 @@ export function LandingExperience() {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Hero entrance timeline
         gsap.from(".hero-stagger", {
           y: 24,
           opacity: 0,
@@ -36,7 +35,6 @@ export function LandingExperience() {
           clearProps: "transform,opacity",
         });
 
-        // Section headers and standalone blocks
         gsap.utils.toArray<HTMLElement>(".reveal-section").forEach((el) => {
           gsap.from(el, {
             y: 24,
@@ -52,7 +50,6 @@ export function LandingExperience() {
           });
         });
 
-        // Card grids with subtle stagger
         gsap.utils.toArray<HTMLElement>(".reveal-grid").forEach((grid) => {
           const cards = grid.querySelectorAll(".reveal-card");
           if (cards.length === 0) return;
@@ -81,14 +78,14 @@ export function LandingExperience() {
   );
 
   return (
-    <div ref={mainRef} className="relative min-h-screen overflow-x-clip">
+    <div ref={mainRef} className="relative min-h-screen overflow-x-clip bg-[#F2EAE0]">
       <FilmGrainOverlay />
       <Navbar />
       <main>
         <HeroSection />
+        <ImperiumLiftSection />
         <SpecialtiesSection />
-        <MethodSection />
-        <MelasmaSection />
+        <AuthoritySection />
         <TestimonialsSection />
         <FaqSection />
         <LocationSection />
@@ -98,4 +95,3 @@ export function LandingExperience() {
     </div>
   );
 }
-

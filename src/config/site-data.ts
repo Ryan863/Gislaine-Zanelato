@@ -1,259 +1,236 @@
 export interface ServiceItem {
   number: string;
   title: string;
-  tag: string;
-  summary: string;
-  benefit: string;
-  whatsappHref: string;
+  subtitle: string;
+  description: string;
+  highlights: string[];
   featured?: boolean;
+  whatsappText: string;
 }
 
-export interface ReviewItem {
-  author: string;
-  initials: string;
-  badge?: string;
-  quote: string;
-  highlight: string;
-}
-
-export interface FaqItem {
-  id: string;
-  question: string;
-  answer: string;
-}
-
-export interface MethodPillar {
-  label: string;
+export interface ImperiumPillar {
+  number: string;
   title: string;
   description: string;
 }
 
-const WHATSAPP_NUMBER = "5551997968962";
+export interface TestimonialItem {
+  name: string;
+  context: string;
+  quote: string;
+  rating: number;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export const WHATSAPP_NUMBER = "5549999344184";
 
 export function buildWhatsAppUrl(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
+export function buildServiceWhatsAppUrl(serviceName: string): string {
+  return buildWhatsAppUrl(
+    `Olá, Dra. Gislaine! Gostaria de saber mais sobre ${serviceName} e agendar uma avaliação personalizada.`
+  );
+}
+
 export const SITE_CONFIG = {
-  brandName: "Dra. Anathyellie Charão",
-  brandUpper: "DRA. ANATHYELLIE CHARÃO",
-  brandSubtitle: "HARMONIZAÇÃO FACIAL & SAÚDE INTEGRATIVA",
-  title:
-    "Dra. Anathyellie Charão | Harmonização Facial e Melasma em Santa Cruz do Sul - RS",
+  brandName: "Dra. Gislaine Zanelato",
+  brandTagline: "BIOMÉDICA ESTETA • HARMONIZAÇÃO FACIAL",
+  title: "Dra. Gislaine Zanelato | Harmonização Facial e Peles Maduras em Lages - SC",
   description:
-    "Harmonização facial, toxina botulínica, bioestimuladores de colágeno e tratamento integrativo para melasma em Santa Cruz do Sul - RS. Protocolos 100% individualizados com acolhimento e segurança.",
-  phoneDisplay: "(51) 99796-8962",
-  phoneInternational: "+5551997968962",
-  whatsappPrimary:
-    "https://wa.me/5551997968962?text=Ol%C3%A1%2C+Dra.+Anathyellie%21+Visitei+o+site+e+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+personalizada.",
-  instagramHandle: "@dra.anathyelliecharao",
-  instagramUrl: "https://www.instagram.com/dra.anathyelliecharao/",
-  facebookUrl: "https://www.facebook.com/anathyellie.charao/",
+    "Especialista em peles maduras e criadora do Protocolo Imperium Lift em Lages - SC. Mais de 5 anos gerenciando o envelhecimento com técnica, elegância e naturalidade.",
+  phoneDisplay: "(49) 99934-4184",
+  phoneInternational: "+5549999344184",
+  whatsappUrl:
+    "https://wa.me/5549999344184?text=Ol%C3%A1%2C+Dra.+Gislaine%21+Visitei+o+site+e+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o+personalizada.",
+  instagramHandle: "@dragislainezanelato",
+  instagramUrl: "https://www.instagram.com/dragislainezanelato/",
+  googleRating: "5.0",
+  googleReviewCount: 7,
   address: {
-    street: "R. Vinte e Oito de Outubro, 48",
-    neighborhood: "Universitário",
-    city: "Santa Cruz do Sul",
-    state: "RS",
-    postalCode: "96815-710",
-    plusCode: "7HV8+2C Universitário, Santa Cruz do Sul - RS",
-    full: "R. Vinte e Oito de Outubro, 48 - Universitário, Santa Cruz do Sul - RS, 96815-710",
-    googleMapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=R.+Vinte+e+Oito+de+Outubro,+48+-+Universit%C3%A1rio,+Santa+Cruz+do+Sul+-+RS,+96815-710",
+    street: "R. João Gualberto da Silva, 35 - Sala 03",
+    neighborhood: "Centro",
+    city: "Lages",
+    state: "SC",
+    postalCode: "88501-005",
+    plusCode: "5MM9+JQ Centro, Lages - SC",
+    full: "R. João Gualberto da Silva, 35 - Sala 03 - Centro, Lages - SC, 88501-005",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=R.+Jo%C3%A3o+Gualberto+da+Silva,+35+-+Sala+03+-+Centro,+Lages+-+SC,+88501-005",
   },
   hours: [
-    { days: "Segunda a Sexta-feira", time: "08:30 às 17:30", open: true },
-    { days: "Sábado e Domingo", time: "Fechado", open: false },
+    { days: "Segunda a Sexta-feira", time: "13:00 às 20:30" },
+    { days: "Sábado", time: "13:30 às 15:00" },
+    { days: "Domingo", time: "Fechado" },
   ],
-  rating: {
-    score: "5.0",
-    count: 30,
-  },
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Especialidades", href: "#especialidades" },
-  { label: "Melasma", href: "#melasma" },
-  { label: "Método", href: "#metodo" },
+  { label: "Imperium Lift", href: "#imperium-lift" },
+  { label: "Procedimentos", href: "#procedimentos" },
+  { label: "Sobre", href: "#sobre" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "Contato", href: "#contato" },
 ] as const;
 
-export const SERVICES: ServiceItem[] = [
+export const IMPERIUM_PILLARS: ImperiumPillar[] = [
   {
     number: "01",
-    title: "Protocolo Integrativo para Melasma",
-    tag: "Saúde Integrativa",
-    summary:
-      "Investigação aprofundada dos gatilhos biológicos, hormonais e inflamatórios que alimentam a mancha.",
-    benefit:
-      "Controle inflamatório e despigmentação gradual com respeito à barreira cutânea, reduzindo o risco de efeito rebote.",
-    whatsappHref: buildWhatsAppUrl(
-      "Olá, Dra. Anathyellie! Gostaria de saber mais sobre o Protocolo Integrativo para Melasma."
-    ),
-    featured: true,
+    title: "Sustentação Profunda",
+    description:
+      "Associação estratégica de Bioestimuladores de Colágeno e Fios de PDO para devolver densidade dérmica, reposicionar tecidos e redefinir o terço médio e mandibular sem pesar a expressão.",
   },
   {
     number: "02",
-    title: "Toxina Botulínica (Botox) de Alta Naturalidade",
-    tag: "Expressão Preservada",
-    summary:
-      "Aplicação precisa e individualizada para suavizar linhas dinâmicas sem congelar sua identidade facial.",
-    benefit:
-      "Semblante descansado, leve e natural, com mapeamento anatômico exclusivo para a sua musculatura.",
-    whatsappHref: buildWhatsAppUrl(
-      "Olá, Dra. Anathyellie! Gostaria de saber mais sobre a Toxina Botulínica (Botox) de Alta Naturalidade."
-    ),
+    title: "Tecnologia de Precisão",
+    description:
+      "Sinergia entre Ultraformer e Laser Fracionado para atuar nas camadas musculares e superficiais da pele, promovendo contração tecidual, luminosidade e refinamento de textura.",
   },
   {
     number: "03",
-    title: "Bioestimuladores de Colágeno & Firmeza Dérmica",
-    tag: "Regeneração Biológica",
-    summary:
-      "Estímulo progressivo da produção natural de colágeno para devolver densidade, elasticidade e sustentação tecidual.",
-    benefit:
-      "Efeito lifting gradual e duradouro que trata a flacidez na origem, sem exageros de volume.",
-    whatsappHref: buildWhatsAppUrl(
-      "Olá, Dra. Anathyellie! Gostaria de saber mais sobre os Bioestimuladores de Colágeno & Firmeza Dérmica."
-    ),
+    title: "Manutenção Ética Individualizada",
+    description:
+      "Cada rosto responde em seu próprio ritmo. A Dra. Gislaine acompanha pessoalmente a evolução biológica dos resultados, utilizando apenas produtos certificados de primeira linha.",
+  },
+];
+
+export const SERVICES: ServiceItem[] = [
+  {
+    number: "01",
+    title: "Protocolo Imperium Lift & Peles Maduras",
+    subtitle: "MÉTODO AUTORAL EXCLUSIVO",
+    description:
+      "Associação estratégica desenvolvida pela Dra. Gislaine Zanelato para reestruturação facial, firmeza profunda e rejuvenescimento global sem artificialidade.",
+    highlights: [
+      "Mapeamento anatômico individualizado",
+      "Combate à flacidez estrutural",
+      "Resultados progressivos e elegantes",
+    ],
+    featured: true,
+    whatsappText: buildServiceWhatsAppUrl("Protocolo Imperium Lift & Peles Maduras"),
+  },
+  {
+    number: "02",
+    title: "Bioestimuladores de Colágeno & Fios de PDO",
+    subtitle: "ESTÍMULO BIOLÓGICO & LIFTING",
+    description:
+      "Estímulo intenso da produção natural de colágeno combinado ao efeito lifting imediato e progressivo para tratar a flacidez facial e cervical.",
+    highlights: ["Face e pescoço", "Melhora da espessura da pele", "Efeito firmeza duradouro"],
+    whatsappText: buildServiceWhatsAppUrl("Bioestimuladores de Colágeno & Fios de PDO"),
+  },
+  {
+    number: "03",
+    title: "Toxina Botulínica (Botox) & Preenchimento",
+    subtitle: "EQUILÍBRIO & ESCULTURA FACIAL",
+    description:
+      "Suavização precisa de linhas de expressão e escultura labial ou facial com ácido hialurônico, preservando sua identidade e leveza ao sorrir.",
+    highlights: ["Expressão descansada", "Contorno labial refinado", "Proporção anatômica"],
+    whatsappText: buildServiceWhatsAppUrl("Toxina Botulínica (Botox) & Preenchimento"),
   },
   {
     number: "04",
-    title: "Limpeza de Pele Profunda & Óleos Essenciais (dōTERRA)",
-    tag: "Botânica & Assepsia",
-    summary:
-      "Higienização profunda e renovação celular associada a óleos essenciais terapêuticos de alta pureza.",
-    benefit:
-      "Pele purificada, acalmada e equilibrada — protocolo especialmente seguro para peles sensíveis e com melasma.",
-    whatsappHref: buildWhatsAppUrl(
-      "Olá, Dra. Anathyellie! Gostaria de saber mais sobre a Limpeza de Pele Profunda & Óleos Essenciais (dōTERRA)."
-    ),
+    title: "Ultraformer & Tecnologias Fracionadas",
+    subtitle: "ALTA PERFORMANCE NÃO INVASIVA",
+    description:
+      "Tratamentos de ponta para definição do contorno mandibular, redução de papada, estímulo profundo e renovação celular com laser fracionado.",
+    highlights: ["Contorno mandibular nítido", "Qualidade de pele superior", "Zero afastamento social"],
+    whatsappText: buildServiceWhatsAppUrl("Ultraformer & Tecnologias Fracionadas"),
   },
   {
     number: "05",
-    title: "Harmonização Facial & Equilíbrio de Contornos",
-    tag: "Proporção Única",
-    summary:
-      "Planejamento sutil de pontos de sustentação e contornos respeitando as proporções e a história do seu rosto.",
-    benefit:
-      "Realce discreto dos traços naturais com segurança clínica e olhar estético refinado.",
-    whatsappHref: buildWhatsAppUrl(
-      "Olá, Dra. Anathyellie! Gostaria de saber mais sobre a Harmonização Facial & Equilíbrio de Contornos."
-    ),
+    title: "Harmonização & Volumização Glútea",
+    subtitle: "PROTOCOLO CORPORAL AVANÇADO",
+    description:
+      "Protocolo corporal focado em projeção harmônica, contorno, firmeza tecidual e melhora visível da textura e celulite da região glútea.",
+    highlights: ["Firmeza e sustentação", "Melhora de textura", "Planejamento personalizado"],
+    whatsappText: buildServiceWhatsAppUrl("Harmonização & Volumização Glútea"),
   },
 ];
 
-export const METHOD_PILLARS: MethodPillar[] = [
+export const AUTHORITY_POINTS = [
   {
-    label: "Visão Sistêmica",
-    title: "Além da superfície da pele",
+    title: "Mais de 5 anos dedicados a peles maduras",
     description:
-      "Cada mancha ou sinal de envelhecimento conta uma história biológica. Investigamos inflamação, rotina e saúde global antes de definir qualquer ativo.",
+      "Experiência clínica contínua no gerenciamento biológico do envelhecimento, respeitando a anatomia e o tempo de cada paciente.",
   },
   {
-    label: "Zero Padronização",
-    title: "Protocolos 100% sob medida",
+    title: "Produtos certificados e procedência rigorosa",
     description:
-      "Não trabalhamos com receitas prontas ou pacotes genéricos. Seu plano de cuidado é desenhado exclusivamente para a sua anatomia e momento de vida.",
+      "Seleção criteriosa de injetáveis de alta pureza e tecnologias reconhecidas para segurança e previsibilidade clínica.",
   },
   {
-    label: "Ética & Clareza",
-    title: "Acolhimento sem pressa",
+    title: "Execução e manutenção acompanhadas de perto",
     description:
-      "Explicamos cada etapa com clareza didática e transparência, indicando apenas o que traz benefício real para a sua pele — sem pressão comercial.",
-  },
-  {
-    label: "Sinergia Terapêutica",
-    title: "Ciência e pureza botânica",
-    description:
-      "Unimos injetáveis de alta performance e tecnologias modernas a ativos botânicos terapêuticos, como os óleos essenciais dōTERRA.",
+      "Atendimento ético no Centro de Lages, com acompanhamento direto da Dra. Gislaine desde a avaliação até as revisões.",
   },
 ];
 
-export const REVIEWS: ReviewItem[] = [
+export const TESTIMONIALS: TestimonialItem[] = [
   {
-    author: "Renata Rce",
-    initials: "RR",
-    highlight: "Explicação detalhada sobre o melasma",
+    name: "Angela Ramos da Costa",
+    context: "Avaliação verificada no Google",
     quote:
-      "Profissional excelente, super atenciosa e me explicou tudo em detalhes sobre o melasma, coisas que nunca tinha escutado de outros profissionais. Indico demais o trabalho dela.",
+      "Minha experiência foi excelente, profissional ética, produtos de alta qualidade. Execução e manutenção dos procedimentos estéticos acompanhados e executados pela Gislaine. Atendimento espetacular!",
+    rating: 5,
   },
   {
-    author: "Louannye Charão",
-    initials: "LC",
-    highlight: "Olhar na causa, não só na superfície",
+    name: "Marcia Terezinha",
+    context: "Avaliação verificada no Google",
     quote:
-      "Pela primeira vez senti que alguém realmente quis entender a causa do meu melasma, e não apenas tratar a superfície da pele.",
+      "Conheci a Dr Gislaine através do Instagram tive a oportunidade de conhecer ela e o trabalho espetacular, estou muito satisfeita com resultados e recomendo a todos.",
+    rating: 5,
   },
   {
-    author: "Gilvania Pedreira",
-    initials: "GP",
-    highlight: "Primeira experiência com Botox e bioestimulador",
+    name: "Grasiele Daiane Rodrigues",
+    context: "Avaliação verificada no Google",
     quote:
-      "Foi a primeira vez que fiz procedimentos como BOTOX e bioestimulador de colágeno e foi um privilégio fazer com a Dra. Anathyellie. Recepção maravilhosa, me senti acolhida.",
+      "Um ótimo atendimento, Profissional incrível, entrega o resultado que promete, amei ficou maravilhoso.",
+    rating: 5,
   },
   {
-    author: "Anelise Silva",
-    initials: "AS",
-    highlight: "Protocolo personalizado que valoriza a individualidade",
+    name: "Bruna Canto",
+    context: "Avaliação verificada no Google",
     quote:
-      "Não trabalha com padrão, mas sim com um protocolo personalizado que valoriza a individualidade de cada pessoa. Recomendo de olhos fechados!",
+      "Trabalho impecável, ambiente aconchegante, atendimento maravilhoso!!!! Super amei.",
+    rating: 5,
   },
   {
-    author: "Julia Thaís Gabe",
-    initials: "JG",
-    badge: "Local Guide",
-    highlight: "Limpeza de pele e toxina botulínica",
-    quote:
-      "Fiz limpeza de pele e aplicação de toxina com ela e fiquei encantada com o resultado. Sem dúvidas uma biomédica de confiança!",
-  },
-  {
-    author: "Paula Kaufmann",
-    initials: "PK",
-    highlight: "Cuidado genuíno sem foco em vendas",
-    quote:
-      "No mundo onde todos só pensam em vender, Nathy pensou em mim! O que seria para limpeza de pele saí com direcionamento sobre minhas outras dores!",
-  },
-  {
-    author: "Andrisa Kollett",
-    initials: "AK",
-    highlight: "Limpeza com óleos dōTERRA e Botox",
-    quote:
-      "Avaliou todo o meu rosto, fez uma limpeza de pele profunda, até com óleos essenciais da dōTERRA para o meu melasma. Fiz meu botox e o atendimento é impecável.",
+    name: "Ana Paula Matos",
+    context: "Avaliação verificada no Google",
+    quote: "Ótima profissional, atendimento impecável.",
+    rating: 5,
   },
 ];
 
 export const FAQS: FaqItem[] = [
   {
-    id: "faq-melasma",
-    question:
-      "Por que o tratamento de melasma da Dra. Anathyellie é diferente?",
+    question: "O que é o Protocolo Imperium Lift e para quem ele é indicado?",
     answer:
-      "Porque não tratamos apenas a mancha visível com ácidos agressivos que podem sensibilizar a pele e causar efeito rebote. Na avaliação integrativa, investigamos gatilhos internos, inflamação sistêmica, rotina de barreira cutânea e fatores oxidativos para construir um controle seguro, educativo e duradouro.",
+      "O Protocolo Imperium Lift é um método exclusivo criado pela Dra. Gislaine Zanelato para o gerenciamento completo de peles maduras. Ele associa bioestimuladores, sustentação e tecnologias de ponta para tratar a flacidez e reestruturar os contornos faciais de forma natural, sendo indicado para quem busca firmeza e rejuvenescimento sem artificialidade.",
   },
   {
-    id: "faq-primeira-vez",
-    question:
-      "Tenho receio de fazer Botox ou bioestimuladores pela primeira vez. Como funciona?",
+    question: "Qual a diferença entre Bioestimuladores de Colágeno, Fios de PDO e Ultraformer?",
     answer:
-      "O atendimento é conduzido sem pressa, com explicação didática de cada etapa antes de qualquer aplicação. Trabalhamos com dosagens suaves e planejamento anatômico individualizado para preservar suas expressões naturais e proporcionar uma primeira experiência tranquila e acolhedora.",
+      "Cada recurso atua em uma profundidade específica: o Ultraformer promove ancoragem muscular e redução de flacidez profunda por ultrassom; os Fios de PDO oferecem tração e estímulo mecânico localizado; e os Bioestimuladores ativam a produção biológica de novo colágeno na derme. Quando associados estrategicamente, os resultados se potencializam.",
   },
   {
-    id: "faq-personalizado",
-    question: "Os protocolos são padronizados ou feitos sob medida?",
+    question: "Os procedimentos deixam o rosto inchado ou artificial?",
     answer:
-      "Todos os protocolos são 100% individualizados. Cada paciente passa por uma avaliação clínica global que considera estrutura facial, qualidade dérmica, histórico de saúde e objetivos pessoais — evitando qualquer padrão pronto ou intervenção desnecessária.",
+      "Não. O pilar ético do atendimento da Dra. Gislaine é preservar a sua identidade e os seus traços individuais. O planejamento prioriza sustentação, qualidade de pele e proporções anatômicas equilibradas, entregando um aspecto descansado, firme e elegante — nunca exagerado.",
   },
   {
-    id: "faq-doterra",
-    question: "Como funciona a limpeza de pele com óleos essenciais?",
+    question: "Como funciona o acompanhamento e a manutenção dos procedimentos?",
     answer:
-      "Associamos a assepsia e renovação celular profunda a óleos essenciais terapêuticos de grau de pureza elevado (dōTERRA), selecionados conforme a necessidade da sua pele para acalmar processos inflamatórios, restaurar o viço e auxiliar no manejo de manchas e sensibilidade.",
+      "Após a avaliação personalizada no Centro de Lages, definimos um plano de tratamento por etapas. Todos os procedimentos são executados e acompanhados diretamente pela Dra. Gislaine, com retornos programados para monitorar a resposta biológica do seu organismo e orientar a manutenção ideal.",
   },
   {
-    id: "faq-agendamento",
-    question: "Onde fica a clínica em Santa Cruz do Sul e como agendo?",
+    question: "Quais são os horários de atendimento da clínica em Lages?",
     answer:
-      "A clínica está localizada na R. Vinte e Oito de Outubro, 48, Bairro Universitário, Santa Cruz do Sul - RS (CEP 96815-710). Os atendimentos acontecem de segunda a sexta-feira, das 08:30 às 17:30, com agendamento direto e humanizado pelo WhatsApp (51) 99796-8962.",
+      "A clínica atende em horário estendido, pensado para quem trabalha em horário comercial: de segunda a sexta-feira das 13:00 às 20:30, e aos sábados das 13:30 às 15:00, na R. João Gualberto da Silva, 35 - Sala 03, Centro, Lages - SC.",
   },
 ];
-

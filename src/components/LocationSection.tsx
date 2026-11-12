@@ -1,203 +1,104 @@
-import {
-  ArrowUpRight,
-  Clock,
-  Facebook,
-  Instagram,
-  MapPin,
-  MessageCircle,
-  Navigation,
-} from "lucide-react";
+import { Clock, Instagram, MapPin, MessageCircle, Navigation } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site-data";
 
 export function LocationSection() {
   return (
     <section
       id="contato"
-      className="py-14 sm:py-20 lg:py-28 bg-[#F7F3ED] border-t border-stone-900/[0.08]"
+      className="bg-[#E8DDD0] py-14 sm:py-20 lg:py-28 border-b border-[#B8925A]/20"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="reveal-section rounded-3xl border border-stone-900/[0.08] bg-white/85 backdrop-blur-sm overflow-hidden shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            {/* Left Info */}
-            <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-between">
-              <div>
-                <p className="text-xs tracking-[0.2em] uppercase text-[#8C5A3C] font-semibold">
-                  Localização &amp; Atendimento
-                </p>
-                <h2 className="mt-3 font-display text-3xl sm:text-4xl font-medium tracking-tight leading-[1.1] text-[#26211F] text-balance">
-                  Um espaço reservado no Bairro Universitário, em Santa Cruz do
-                  Sul.
-                </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="reveal-section max-w-2xl mb-10 sm:mb-14">
+          <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#9C7844] font-semibold mb-3">
+            <span className="w-6 h-px bg-[#B8925A]" aria-hidden="true" />
+            <span>LOCALIZAÇÃO, HORÁRIOS &amp; CANAIS DIRETOS</span>
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.08] text-[#1C1917] text-balance">
+            Consultório reservado no{" "}
+            <em className="italic text-[#9C7844] font-normal">Centro de Lages</em>.
+          </h2>
+        </div>
 
-                <div className="mt-8 space-y-6">
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-full bg-[#EFE9E0] flex items-center justify-center text-[#8C5A3C] shrink-0">
-                      <MapPin className="w-5 h-5" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#26211F]">
-                        Endereço da Clínica
-                      </p>
-                      <p className="mt-1 text-sm text-[#68605C] leading-relaxed">
-                        {SITE_CONFIG.address.full}
-                      </p>
-                      <p className="mt-0.5 text-xs text-[#68605C]/80">
-                        Plus Code: {SITE_CONFIG.address.plusCode}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-full bg-[#EFE9E0] flex items-center justify-center text-[#4E6151] shrink-0">
-                      <Clock className="w-5 h-5" aria-hidden="true" />
-                    </div>
-                    <div className="w-full max-w-sm">
-                      <p className="text-sm font-semibold text-[#26211F]">
-                        Horário de Atendimento
-                      </p>
-                      <dl className="mt-2 space-y-1.5 text-sm">
-                        {SITE_CONFIG.hours.map((item) => (
-                          <div
-                            key={item.days}
-                            className="flex items-center justify-between gap-4 border-b border-stone-900/[0.06] pb-1.5"
-                          >
-                            <dt className="text-[#68605C]">{item.days}</dt>
-                            <dd
-                              className={`font-medium tabular-nums ${
-                                item.open ? "text-[#26211F]" : "text-[#68605C]"
-                              }`}
-                            >
-                              {item.time}
-                            </dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </div>
-                  </div>
-                </div>
+        <div className="reveal-section grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Address & Route Card */}
+          <div className="lg:col-span-7 rounded-2xl border border-[#B8925A]/28 bg-[#FAF6F0]/92 backdrop-blur-sm p-6 sm:p-8 lg:p-10 flex flex-col justify-between shadow-[0_16px_40px_-24px_rgba(28,25,23,0.18)]">
+            <div>
+              <div className="inline-flex items-center gap-2 text-xs tracking-[0.16em] uppercase text-[#9C7844] font-semibold mb-4">
+                <MapPin className="w-4 h-4 shrink-0" />
+                <span>Endereço Completo</span>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-stone-900/[0.08] flex flex-wrap items-center gap-3">
-                <a
-                  href={SITE_CONFIG.address.googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#26211F] hover:bg-[#8C5A3C] text-white px-6 py-3.5 text-sm font-semibold transition-colors min-h-[48px]"
-                >
-                  <Navigation className="w-4 h-4" aria-hidden="true" />
-                  <span>Traçar Rota no Google Maps</span>
-                </a>
+              <h3 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] text-balance mb-3">
+                {SITE_CONFIG.address.street}
+              </h3>
+              <p className="text-sm sm:text-base text-[#5E554D] mb-2">
+                {SITE_CONFIG.address.neighborhood}, {SITE_CONFIG.address.city} -{" "}
+                {SITE_CONFIG.address.state}, CEP {SITE_CONFIG.address.postalCode}
+              </p>
+              <p className="text-xs text-[#6B635B] tabular-nums mb-8">
+                Plus Code: {SITE_CONFIG.address.plusCode}
+              </p>
+            </div>
 
-                <a
-                  href={SITE_CONFIG.whatsappPrimary}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#8C5A3C]/30 bg-[#8C5A3C]/5 hover:bg-[#8C5A3C]/10 text-[#8C5A3C] px-6 py-3.5 text-sm font-semibold transition-colors min-h-[48px]"
-                >
-                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span className="tabular-nums">
-                    {SITE_CONFIG.phoneDisplay}
-                  </span>
-                </a>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-6 border-t border-[#B8925A]/20">
+              <a
+                href={SITE_CONFIG.address.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[46px] inline-flex items-center justify-center gap-2 rounded-full bg-[#1C1917] hover:bg-[#2E2925] text-[#FAF7F2] text-sm font-semibold px-6 py-3 transition-colors"
+              >
+                <Navigation className="w-4 h-4 text-[#D8BC8E] shrink-0" />
+                <span>Traçar Rota no Google Maps</span>
+              </a>
+
+              <a
+                href={SITE_CONFIG.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[46px] inline-flex items-center justify-center gap-2 rounded-full border border-[#B8925A]/40 bg-[#F2EAE0]/80 hover:bg-[#B8925A] text-[#1C1917] hover:text-white text-sm font-semibold px-6 py-3 transition-all duration-300"
+              >
+                <Instagram className="w-4 h-4 shrink-0" />
+                <span>{SITE_CONFIG.instagramHandle}</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Hours & Direct WhatsApp Card */}
+          <div className="lg:col-span-5 rounded-2xl border border-[#B8925A]/30 bg-[#1C1917] text-[#FAF7F2] p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 text-xs tracking-[0.16em] uppercase text-[#D8BC8E] font-semibold mb-5">
+                <Clock className="w-4 h-4 shrink-0" />
+                <span>Horário de Atendimento</span>
+              </div>
+
+              <div className="divide-y divide-white/10 mb-8">
+                {SITE_CONFIG.hours.map((row) => (
+                  <div
+                    key={row.days}
+                    className="py-3.5 flex items-center justify-between gap-4 text-sm"
+                  >
+                    <span className="text-[#FAF7F2]/80">{row.days}</span>
+                    <span className="font-semibold text-[#D8BC8E] tabular-nums shrink-0">
+                      {row.time}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Right Channels Panel */}
-            <div className="lg:col-span-5 bg-[#EFE9E0] p-6 sm:p-10 lg:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-stone-900/[0.08]">
-              <div>
-                <p className="text-xs tracking-[0.2em] uppercase text-[#4E6151] font-semibold">
-                  Canais Oficiais
-                </p>
-                <h3 className="mt-3 font-display text-2xl sm:text-3xl font-medium text-[#26211F] leading-snug">
-                  Converse diretamente com a nossa equipe.
-                </h3>
-                <p className="mt-3 text-sm text-[#68605C] leading-relaxed">
-                  Tire dúvidas sobre avaliações, horários disponíveis ou
-                  preparos antes da consulta diretamente pelo WhatsApp.
-                </p>
-
-                <div className="mt-7 space-y-3">
-                  <a
-                    href={SITE_CONFIG.whatsappPrimary}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-2xl border border-stone-900/[0.08] bg-white/90 hover:bg-white p-4 transition-all group min-h-[56px]"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="w-10 h-10 rounded-full bg-[#8C5A3C] text-white flex items-center justify-center">
-                        <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-[#26211F]">
-                          WhatsApp Oficial
-                        </p>
-                        <p className="text-xs text-[#68605C] tabular-nums">
-                          {SITE_CONFIG.phoneDisplay}
-                        </p>
-                      </div>
-                    </div>
-                    <ArrowUpRight
-                      className="w-4 h-4 text-[#8C5A3C] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </a>
-
-                  <a
-                    href={SITE_CONFIG.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-2xl border border-stone-900/[0.08] bg-white/90 hover:bg-white p-4 transition-all group min-h-[56px]"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="w-10 h-10 rounded-full bg-[#FAF7F2] border border-stone-900/10 text-[#26211F] flex items-center justify-center">
-                        <Instagram className="w-4 h-4" aria-hidden="true" />
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-[#26211F]">
-                          Instagram
-                        </p>
-                        <p className="text-xs text-[#68605C]">
-                          {SITE_CONFIG.instagramHandle}
-                        </p>
-                      </div>
-                    </div>
-                    <ArrowUpRight
-                      className="w-4 h-4 text-[#8C5A3C] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </a>
-
-                  <a
-                    href={SITE_CONFIG.facebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-2xl border border-stone-900/[0.08] bg-white/90 hover:bg-white p-4 transition-all group min-h-[56px]"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="w-10 h-10 rounded-full bg-[#FAF7F2] border border-stone-900/10 text-[#26211F] flex items-center justify-center">
-                        <Facebook className="w-4 h-4" aria-hidden="true" />
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-[#26211F]">
-                          Facebook
-                        </p>
-                        <p className="text-xs text-[#68605C]">
-                          Dra. Anathyellie Charão
-                        </p>
-                      </div>
-                    </div>
-                    <ArrowUpRight
-                      className="w-4 h-4 text-[#8C5A3C] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </a>
-                </div>
-              </div>
-
-              <p className="mt-8 text-xs text-[#68605C] leading-relaxed">
-                Atendimento exclusivamente com hora marcada para garantir tempo
-                integral e privacidade a cada paciente.
+            <div className="pt-5 border-t border-white/10">
+              <p className="text-xs uppercase tracking-[0.16em] text-[#FAF7F2]/60 mb-2">
+                Agendamento Direto via WhatsApp
               </p>
+              <a
+                href={SITE_CONFIG.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[48px] w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-[#B8925A] hover:bg-[#9C7844] text-white font-semibold text-sm sm:text-base px-6 py-3.5 transition-colors"
+              >
+                <MessageCircle className="w-4 h-4 shrink-0" />
+                <span className="tabular-nums">{SITE_CONFIG.phoneDisplay}</span>
+              </a>
             </div>
           </div>
         </div>
@@ -205,4 +106,3 @@ export function LocationSection() {
     </section>
   );
 }
-

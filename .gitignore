@@ -40,3 +40,5 @@ next-env.d.ts
 
 # unrelated local assets in workspace root
 /*.jpg
+
+.vercel

@@ -1,5 +1,5 @@
 {
-  "name": "dra-anathyellie-charao",
+  "name": "dra-gislaine-zanelato",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -27,4 +27,3 @@
     "typescript": "^5.8.3"
   }
 }
-

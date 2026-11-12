@@ -1,74 +1,76 @@
-import { ArrowUpRight } from "lucide-react";
-import { NAV_LINKS, SITE_CONFIG } from "@/config/site-data";
+import { Instagram, MapPin, MessageCircle } from "lucide-react";
+import { SITE_CONFIG } from "@/config/site-data";
 
 export function FooterCtaSection() {
   return (
-    <footer className="bg-[#26211F] text-[#F7F3ED]">
-      {/* Final Conversion Block */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 border-b border-white/10">
-        <div className="reveal-section max-w-3xl">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#9E6B4B] font-semibold">
-            Próximo Passo
-          </p>
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.08] text-white text-balance">
-            Sua pele merece um olhar único, atento e{" "}
-            <em className="italic font-normal text-[#D9B89F]">
-              verdadeiramente integrativo
-            </em>
-            .
-          </h2>
-          <p className="mt-4 text-base text-white/75 leading-relaxed text-pretty max-w-xl">
-            Agende sua avaliação personalizada em Santa Cruz do Sul e descubra o
-            protocolo exato para revelar sua beleza natural com segurança.
+    <footer className="bg-[#1C1917] text-[#FAF7F2] pt-16 sm:pt-20 lg:pt-24 pb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Final Conversion Block */}
+        <div className="reveal-section rounded-3xl border border-[#B8925A]/25 bg-gradient-to-br from-[#26221F] via-[#1C1917] to-[#231E1A] p-8 sm:p-12 lg:p-16 text-center max-w-4xl mx-auto mb-14 sm:mb-16">
+          <p className="inline-flex items-center justify-center gap-2 text-xs tracking-[0.2em] uppercase text-[#D8BC8E] font-semibold mb-4">
+            <span className="w-6 h-px bg-[#B8925A]" aria-hidden="true" />
+            <span>AVALIAÇÃO PERSONALIZADA EM LAGES - SC</span>
+            <span className="w-6 h-px bg-[#B8925A]" aria-hidden="true" />
           </p>
 
-          <div className="mt-8">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.08] text-[#FAF7F2] text-balance mb-5">
+            A idade é a mesma, mas a sua pele{" "}
+            <em className="italic text-[#D8BC8E] font-normal">não precisa demonstrar</em>.
+          </h2>
+
+          <p className="text-sm sm:text-base text-[#FAF7F2]/75 leading-relaxed text-pretty max-w-2xl mx-auto mb-8">
+            Agende sua avaliação presencial com a Dra. Gislaine Zanelato e descubra um plano
+            estratégico pensado para a sua anatomia, sua rotina e a naturalidade que você valoriza.
+          </p>
+
+          <a
+            href={SITE_CONFIG.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="min-h-[52px] inline-flex items-center justify-center gap-2.5 rounded-full bg-[#B8925A] hover:bg-[#9C7844] text-white font-semibold text-sm sm:text-base px-8 py-4 shadow-[0_14px_34px_-12px_rgba(184,146,90,0.65)] transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <MessageCircle className="w-5 h-5 shrink-0" />
+            <span>Agendar Avaliação via WhatsApp</span>
+          </a>
+        </div>
+
+        {/* Institutional Footer Bar */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#FAF7F2]/60">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+            <span className="font-display text-sm tracking-[0.08em] uppercase text-[#FAF7F2]">
+              {SITE_CONFIG.brandName}
+            </span>
+            <span className="hidden sm:inline text-[#B8925A]" aria-hidden="true">
+              •
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#B8925A] shrink-0" />
+              <span>{SITE_CONFIG.address.full}</span>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-5">
             <a
-              href={SITE_CONFIG.whatsappPrimary}
+              href={SITE_CONFIG.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#8C5A3C] hover:bg-[#9E6B4B] text-white px-8 py-4 text-sm font-semibold tracking-wide transition-colors min-h-[48px]"
+              className="inline-flex items-center gap-1.5 text-[#FAF7F2]/75 hover:text-[#D8BC8E] transition-colors"
             >
-              <span>Agendar Avaliação via WhatsApp</span>
-              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              <Instagram className="w-3.5 h-3.5" />
+              <span>{SITE_CONFIG.instagramHandle}</span>
+            </a>
+            <a
+              href={SITE_CONFIG.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[#FAF7F2]/75 hover:text-[#D8BC8E] transition-colors tabular-nums"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>{SITE_CONFIG.phoneDisplay}</span>
             </a>
           </div>
         </div>
       </div>
-
-      {/* Institutional Footer */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs text-white/65">
-        <div>
-          <p className="font-display text-sm tracking-[0.14em] uppercase text-white font-semibold">
-            {SITE_CONFIG.brandUpper}
-          </p>
-          <p className="mt-1">
-            {SITE_CONFIG.address.street} — {SITE_CONFIG.address.neighborhood},{" "}
-            {SITE_CONFIG.address.city} - {SITE_CONFIG.address.state}
-          </p>
-        </div>
-
-        <nav
-          aria-label="Links do rodapé"
-          className="flex flex-wrap items-center gap-x-6 gap-y-2"
-        >
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="hover:text-white transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <p className="tabular-nums">
-          © {new Date().getFullYear()} {SITE_CONFIG.brandName}. Todos os
-          direitos reservados.
-        </p>
-      </div>
     </footer>
   );
 }
-

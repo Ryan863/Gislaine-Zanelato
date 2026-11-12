@@ -1,91 +1,113 @@
-import { ArrowUpRight, Leaf } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { SERVICES } from "@/config/site-data";
 
 export function SpecialtiesSection() {
   return (
     <section
-      id="especialidades"
-      className="py-14 sm:py-20 lg:py-28 bg-[#F7F3ED]"
+      id="procedimentos"
+      className="bg-[#E8DDD0] py-14 sm:py-20 lg:py-28 border-b border-[#B8925A]/20"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="reveal-section max-w-2xl">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#8C5A3C] font-semibold">
-            Especialidades &amp; Protocolos
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="reveal-section max-w-3xl mb-10 sm:mb-14">
+          <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#9C7844] font-semibold mb-3">
+            <span className="w-6 h-px bg-[#B8925A]" aria-hidden="true" />
+            <span>ESPECIALIDADES &amp; PROCEDIMENTOS</span>
           </p>
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.08] text-[#26211F] text-balance">
-            Cuidado estético desenhado para a{" "}
-            <em className="italic font-normal text-[#8C5A3C]">
-              individualidade
-            </em>{" "}
-            do seu rosto.
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.08] text-[#1C1917] text-balance mb-4">
+            Protocolos desenhados para firmeza,{" "}
+            <em className="italic text-[#9C7844] font-normal">contorno</em> e qualidade de pele.
           </h2>
-          <p className="mt-4 text-base text-[#68605C] leading-relaxed text-pretty">
-            Cada procedimento é indicado somente após uma escuta atenta e
-            análise clínica completa — respeitando sua anatomia, sua saúde e o
-            tempo natural da sua pele.
+          <p className="text-sm sm:text-base text-[#5E554D] leading-relaxed text-pretty">
+            Cada procedimento pode ser realizado de forma isolada ou integrado em um plano de
+            gerenciamento facial e corporal sob medida. Escolha o foco do seu interesse para falar
+            diretamente com nossa equipe.
           </p>
         </div>
 
-        <div className="reveal-grid mt-10 sm:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 sm:gap-6">
-          {SERVICES.map((service, index) => {
+        <div className="reveal-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 sm:gap-6">
+          {SERVICES.map((service, idx) => {
             const colSpanClass =
-              index === 0
-                ? "lg:col-span-4"
-                : index === 1
-                ? "lg:col-span-2"
-                : "lg:col-span-2";
+              idx === 0
+                ? "lg:col-span-3"
+                : idx === 1
+                  ? "lg:col-span-3"
+                  : "lg:col-span-2";
 
             return (
               <article
                 key={service.number}
-                className={`reveal-card group relative flex flex-col justify-between rounded-2xl border border-stone-900/[0.08] bg-white/80 backdrop-blur-sm p-6 sm:p-8 transition-all duration-300 hover:bg-white hover:border-[#8C5A3C]/30 hover:shadow-[0_18px_40px_-24px_rgba(38,33,31,0.22)] ${colSpanClass}`}
+                className={`reveal-card ${colSpanClass} rounded-2xl border ${
+                  service.featured
+                    ? "border-[#B8925A]/45 bg-[#1C1917] text-[#FAF7F2] shadow-[0_20px_45px_-22px_rgba(28,25,23,0.45)]"
+                    : "border-stone-900/[0.09] bg-[#FAF6F0]/90 text-[#1C1917] shadow-[0_14px_34px_-20px_rgba(28,25,23,0.16)]"
+                } backdrop-blur-sm p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1`}
               >
                 <div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="font-display text-2xl sm:text-3xl font-medium text-[#8C5A3C] tabular-nums">
-                      {service.number}
-                    </span>
+                  <div className="flex items-center justify-between gap-4 mb-5">
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-medium tracking-wide ${
-                        service.featured || index === 3
-                          ? "bg-[#4E6151]/10 text-[#4E6151]"
-                          : "bg-[#EFE9E0] text-[#68605C]"
+                      className={`text-[11px] tracking-[0.18em] uppercase font-semibold ${
+                        service.featured ? "text-[#D8BC8E]" : "text-[#9C7844]"
                       }`}
                     >
-                      {(service.featured || index === 3) && (
-                        <Leaf className="w-3 h-3" aria-hidden="true" />
-                      )}
-                      {service.tag}
+                      {service.subtitle}
+                    </span>
+                    <span
+                      className={`font-display italic text-2xl tabular-nums ${
+                        service.featured ? "text-[#D8BC8E]" : "text-[#B8925A]"
+                      }`}
+                    >
+                      {service.number}
                     </span>
                   </div>
 
-                  <h3 className="mt-5 font-display text-2xl sm:text-[26px] font-medium leading-[1.15] text-[#26211F] text-balance">
+                  <h3
+                    className={`font-display text-2xl sm:text-[1.7rem] font-medium leading-[1.15] text-balance mb-3 ${
+                      service.featured ? "text-[#FAF7F2]" : "text-[#1C1917]"
+                    }`}
+                  >
                     {service.title}
                   </h3>
 
-                  <p className="mt-3 text-sm sm:text-[15px] leading-relaxed text-[#68605C] text-pretty">
-                    {service.summary}
-                  </p>
-
-                  <p className="mt-3 pt-3 border-t border-stone-900/[0.06] text-xs sm:text-sm leading-relaxed text-[#26211F]/80 text-pretty">
-                    {service.benefit}
-                  </p>
-                </div>
-
-                <div className="mt-6 pt-2">
-                  <a
-                    href={service.whatsappHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#8C5A3C] hover:text-[#70462D] transition-colors min-h-[44px]"
+                  <p
+                    className={`text-sm sm:text-[15px] leading-relaxed text-pretty mb-6 ${
+                      service.featured ? "text-[#FAF7F2]/75" : "text-[#5E554D]"
+                    }`}
                   >
-                    <span>Consultar sobre este protocolo</span>
-                    <ArrowUpRight
-                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </a>
+                    {service.description}
+                  </p>
+
+                  <ul className="space-y-2 mb-7">
+                    {service.highlights.map((item) => (
+                      <li
+                        key={item}
+                        className={`flex items-start gap-2.5 text-xs sm:text-sm ${
+                          service.featured ? "text-[#FAF7F2]/85" : "text-[#4A423B]"
+                        }`}
+                      >
+                        <Check
+                          className={`w-4 h-4 shrink-0 mt-0.5 ${
+                            service.featured ? "text-[#D8BC8E]" : "text-[#9C7844]"
+                          }`}
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+
+                <a
+                  href={service.whatsappText}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`min-h-[44px] w-full inline-flex items-center justify-between rounded-full px-5 py-3 text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                    service.featured
+                      ? "bg-[#B8925A] hover:bg-[#9C7844] text-white"
+                      : "border border-[#B8925A]/35 bg-[#F2EAE0]/80 hover:bg-[#B8925A] text-[#1C1917] hover:text-white"
+                  }`}
+                >
+                  <span>Saber mais sobre {service.title.split("&")[0].trim()}</span>
+                  <ArrowUpRight className="w-4 h-4 shrink-0" />
+                </a>
               </article>
             );
           })}
@@ -94,4 +116,3 @@ export function SpecialtiesSection() {
     </section>
   );
 }
-

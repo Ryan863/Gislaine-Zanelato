@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { NAV_LINKS, SITE_CONFIG } from "@/config/site-data";
 
 export function Navbar() {
@@ -10,7 +10,7 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 24);
+      setScrolled(window.scrollY > 28);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -18,15 +18,13 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!mobileOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKeyDown);
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKeyDown);
     };
   }, [mobileOpen]);
 
@@ -35,33 +33,40 @@ export function Navbar() {
       <header
         className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "backdrop-blur-md bg-[#F7F3ED]/90 border-b border-stone-900/[0.08] py-3"
-            : "bg-transparent py-4 sm:py-5"
+            ? "bg-[#F2EAE0]/92 backdrop-blur-md border-b border-[#B8925A]/20 py-3 shadow-[0_6px_28px_-14px_rgba(28,25,23,0.18)]"
+            : "bg-gradient-to-b from-[#F2EAE0]/75 via-[#F2EAE0]/35 to-transparent py-4 sm:py-5"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           <a
-            href="#inicio"
-            className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8C5A3C] rounded-sm"
-            aria-label="Dra. Anathyellie Charão — Início"
+            href="#topo"
+            className="flex items-center gap-3 group min-w-0"
+            aria-label="Dra. Gislaine Zanelato — Início"
           >
-            <span className="font-display text-base sm:text-lg font-semibold tracking-[0.14em] text-[#26211F] leading-none">
-              {SITE_CONFIG.brandUpper}
+            <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#B8925A]/55 bg-[#1C1917] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <span className="font-display italic text-sm sm:text-base font-semibold tracking-tight text-[#D8BC8E]">
+                GZ
+              </span>
             </span>
-            <span className="mt-1 text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#68605C] font-medium leading-none">
-              {SITE_CONFIG.brandSubtitle}
+            <span className="flex flex-col min-w-0">
+              <span className="font-display text-sm sm:text-base lg:text-lg font-semibold tracking-[0.06em] uppercase text-[#1C1917] truncate">
+                DRA. GISLAINE ZANELATO
+              </span>
+              <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#9C7844] font-semibold truncate">
+                {SITE_CONFIG.brandTagline}
+              </span>
             </span>
           </a>
 
           <nav
             aria-label="Navegação principal"
-            className="hidden lg:flex items-center gap-8"
+            className="hidden lg:flex items-center gap-7"
           >
             {NAV_LINKS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="relative py-1 text-sm font-medium text-[#26211F]/85 hover:text-[#8C5A3C] transition-colors after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-[#8C5A3C] after:transition-all after:duration-300 hover:after:w-full"
+                className="relative text-sm font-medium text-[#1C1917]/85 hover:text-[#1C1917] transition-colors py-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1.5px] after:bg-[#B8925A] after:transition-all after:duration-300 hover:after:w-full"
               >
                 {item.label}
               </a>
@@ -70,111 +75,95 @@ export function Navbar() {
 
           <div className="flex items-center gap-3">
             <a
-              href={SITE_CONFIG.whatsappPrimary}
+              href={SITE_CONFIG.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#8C5A3C] hover:bg-[#70462D] text-white px-5 py-2.5 text-xs font-semibold tracking-wider uppercase transition-colors shadow-sm"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#B8925A] hover:bg-[#9C7844] text-white text-xs sm:text-sm font-semibold px-5 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5"
             >
+              <MessageCircle className="w-4 h-4 shrink-0" />
               <span>Agendar Avaliação</span>
-              <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
             </a>
 
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label="Abrir menu de navegação"
-              aria-expanded={mobileOpen}
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-stone-900/10 bg-[#FAF7F2]/80 backdrop-blur-sm text-[#26211F] hover:bg-white transition-colors"
+              className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-[#B8925A]/35 bg-[#FAF6F0]/80 text-[#1C1917] hover:bg-[#FAF6F0] transition-colors"
             >
-              <Menu className="w-5 h-5" aria-hidden="true" />
+              <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>
       </header>
 
       {/* Mobile Fullscreen Drawer */}
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menu de navegação"
-        className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
-          mobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
+      {mobileOpen && (
         <div
-          className="absolute inset-0 bg-[#26211F]/35 backdrop-blur-sm"
-          onClick={() => setMobileOpen(false)}
-        />
-        <div
-          className={`relative ml-auto flex h-full w-full max-w-sm flex-col justify-between bg-[#F7F3ED] p-6 shadow-2xl transition-transform duration-300 ease-out ${
-            mobileOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu principal"
+          className="fixed inset-0 z-50 bg-[#1C1917] text-[#FAF7F2] flex flex-col justify-between px-6 py-6"
         >
-          <div>
-            <div className="flex items-center justify-between pb-6 border-b border-stone-900/[0.08]">
-              <div className="flex flex-col">
-                <span className="font-display text-base font-semibold tracking-[0.14em] text-[#26211F]">
-                  {SITE_CONFIG.brandUpper}
+          <div className="flex items-center justify-between border-b border-[#B8925A]/20 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="w-9 h-9 rounded-full border border-[#B8925A]/60 bg-[#26221F] flex items-center justify-center">
+                <span className="font-display italic text-sm font-semibold text-[#D8BC8E]">
+                  GZ
                 </span>
-                <span className="mt-1 text-[9px] tracking-[0.2em] uppercase text-[#68605C]">
-                  {SITE_CONFIG.brandSubtitle}
+              </span>
+              <div className="flex flex-col">
+                <span className="font-display text-base font-semibold tracking-[0.06em] uppercase text-[#FAF7F2]">
+                  DRA. GISLAINE ZANELATO
+                </span>
+                <span className="text-[10px] tracking-[0.18em] uppercase text-[#B8925A]">
+                  Lages • SC
                 </span>
               </div>
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                aria-label="Fechar menu"
-                className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-stone-900/10 text-[#26211F] hover:bg-white transition-colors"
-              >
-                <X className="w-5 h-5" aria-hidden="true" />
-              </button>
             </div>
 
-            <nav
-              aria-label="Links do menu mobile"
-              className="mt-6 flex flex-col gap-1"
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              aria-label="Fechar menu"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-[#B8925A]/35 text-[#FAF7F2] hover:bg-white/10 transition-colors"
             >
-              {NAV_LINKS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between min-h-[48px] px-3 rounded-xl font-display text-2xl font-medium text-[#26211F] hover:bg-[#EFE9E0]/70 hover:text-[#8C5A3C] transition-colors"
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight
-                    className="w-4 h-4 text-[#8C5A3C]/70"
-                    aria-hidden="true"
-                  />
-                </a>
-              ))}
-            </nav>
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          <div className="pt-6 border-t border-stone-900/[0.08] space-y-4">
-            <div className="text-xs text-[#68605C] leading-relaxed">
-              <p className="font-semibold text-[#26211F]">
-                Santa Cruz do Sul — RS
-              </p>
-              <p>{SITE_CONFIG.address.street} • Bairro Universitário</p>
-              <p className="tabular-nums mt-0.5">Seg a Sex: 08:30 às 17:30</p>
-            </div>
+          <nav className="flex flex-col gap-2 my-auto py-8">
+            {NAV_LINKS.map((item, idx) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="min-h-[52px] flex items-center justify-between border-b border-white/10 py-3 font-display text-3xl text-[#FAF7F2] hover:text-[#D8BC8E] transition-colors"
+              >
+                <span>{item.label}</span>
+                <span className="text-xs font-sans tracking-[0.2em] text-[#B8925A] tabular-nums">
+                  0{idx + 1}
+                </span>
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex flex-col gap-4 pt-4 border-t border-[#B8925A]/20">
             <a
-              href={SITE_CONFIG.whatsappPrimary}
+              href={SITE_CONFIG.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 w-full min-h-[48px] rounded-full bg-[#8C5A3C] hover:bg-[#70462D] text-white px-6 py-3.5 text-sm font-semibold tracking-wide transition-colors"
+              className="min-h-[52px] w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-[#B8925A] hover:bg-[#9C7844] text-white font-semibold text-base px-6 py-3.5 shadow-lg transition-colors"
             >
+              <MessageCircle className="w-5 h-5" />
               <span>Agendar Avaliação no WhatsApp</span>
-              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
             </a>
+            <p className="text-center text-xs text-[#FAF7F2]/65">
+              {SITE_CONFIG.address.street} • {SITE_CONFIG.address.neighborhood}, {SITE_CONFIG.address.city}
+            </p>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
-

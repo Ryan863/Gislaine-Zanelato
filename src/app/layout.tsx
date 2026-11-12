@@ -22,14 +22,15 @@ export const metadata: Metadata = {
   title: SITE_CONFIG.title,
   description: SITE_CONFIG.description,
   keywords: [
-    "Dra. Anathyellie Charão",
-    "Harmonização Facial Santa Cruz do Sul",
-    "Tratamento de Melasma Santa Cruz do Sul",
-    "Botox Santa Cruz do Sul",
-    "Bioestimuladores de Colágeno",
-    "Saúde Integrativa",
-    "Limpeza de Pele dōTERRA",
-    "Biomédica Esteta Santa Cruz do Sul",
+    "Dra. Gislaine Zanelato",
+    "Harmonização Facial Lages",
+    "Peles Maduras Lages SC",
+    "Protocolo Imperium Lift",
+    "Bioestimuladores de Colágeno Lages",
+    "Fios de PDO Lages",
+    "Ultraformer Lages",
+    "Botox Lages SC",
+    "Biomédica Esteta Lages",
   ],
   openGraph: {
     title: SITE_CONFIG.title,
@@ -39,10 +40,10 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.brandName,
     images: [
       {
-        url: "/hero-desktop.jpg",
-        width: 1200,
-        height: 675,
-        alt: "Dra. Anathyellie Charão — Harmonização Facial e Saúde Integrativa em Santa Cruz do Sul",
+        url: "/hero-desktop.webp",
+        width: 1280,
+        height: 720,
+        alt: "Dra. Gislaine Zanelato — Harmonização Facial e Peles Maduras em Lages - SC",
       },
     ],
   },
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
-    images: ["/hero-desktop.jpg"],
+    images: ["/hero-desktop.webp"],
   },
   robots: {
     index: true,
@@ -61,11 +62,12 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": ["HealthAndBeautyBusiness", "LocalBusiness"],
-  name: "Dra. Anathyellie Charão - Harmonização Facial",
+  name: "Dra. Gislaine Zanelato Estética Lages",
   description: SITE_CONFIG.description,
-  image: "/hero-desktop.jpg",
+  image: "/hero-desktop.webp",
   telephone: SITE_CONFIG.phoneInternational,
   priceRange: "$$$",
+  sameAs: [SITE_CONFIG.instagramUrl],
   address: {
     "@type": "PostalAddress",
     streetAddress: SITE_CONFIG.address.street,
@@ -74,26 +76,27 @@ const jsonLd = {
     postalCode: SITE_CONFIG.address.postalCode,
     addressCountry: "BR",
   },
-  geo: {
-    "@type": "GeoCoordinates",
-    address: SITE_CONFIG.address.plusCode,
-  },
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:30",
-      closes: "17:30",
+      opens: "13:00",
+      closes: "20:30",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday"],
+      opens: "13:30",
+      closes: "15:00",
     },
   ],
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: SITE_CONFIG.rating.score,
-    reviewCount: SITE_CONFIG.rating.count,
+    ratingValue: SITE_CONFIG.googleRating,
+    reviewCount: String(SITE_CONFIG.googleReviewCount),
     bestRating: "5",
     worstRating: "1",
   },
-  sameAs: [SITE_CONFIG.instagramUrl, SITE_CONFIG.facebookUrl],
 };
 
 export default function RootLayout({
@@ -102,11 +105,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${cormorant.variable} ${plusJakarta.variable}`}
-    >
-      <body className="font-sans bg-[#F7F3ED] text-[#26211F] antialiased">
+    <html lang="pt-BR" className={`${cormorant.variable} ${plusJakarta.variable}`}>
+      <body className="bg-[#F2EAE0] text-[#1C1917] font-sans antialiased selection:bg-[#B8925A]/25">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -116,4 +116,3 @@ export default function RootLayout({
     </html>
   );
 }
-
